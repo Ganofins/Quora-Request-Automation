@@ -26,3 +26,7 @@ Just sit back and watch it sending the requests to the writers for the answers f
 # How to run it
 
     python3 quora.py
+
+# Contribute
+
+Feel free to contribute to this repository.
