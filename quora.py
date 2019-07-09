@@ -9,7 +9,7 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 
 
-def send_requests(url="https://www.quora.com/partners", max_wait=10):
+def send_requests(url="https://www.quora.com/partners", max_wait=10, total_requests=25):
 
     """Function for sending requests to the writers for each question"""
 
@@ -70,7 +70,7 @@ def send_requests(url="https://www.quora.com/partners", max_wait=10):
         try:
             sleep(4)
             all_writers = browser.find_element_by_css_selector("div.paged_list_wrapper").find_elements_by_css_selector("div.request_answers_list_item")
-            for each_writer in range(25):
+            for each_writer in range(total_requests):
                 sleep(0.5)
                 send_request = all_writers[each_writer].find_element_by_css_selector("div.ui_layout_text").find_element_by_css_selector("div.button_wrapper")
                 send_request.click()
