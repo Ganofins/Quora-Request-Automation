@@ -25,4 +25,4 @@ Just sit back and watch it sending the requests to the writers for the answers f
 
 # How to run it
 
-    '''python3 quora.py'''
+    python3 quora.py
