@@ -29,6 +29,8 @@ https://www.youtube.com/watch?v=mVJe_6tuBnc
 
 # How to run it
 
+    git clone https://github.com/Ganofins/Quora-Request-Automation.git
+    cd quora-request-automation/
     python3 quora.py
 
 # Contribute
