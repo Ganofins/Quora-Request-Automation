@@ -49,8 +49,8 @@ def send_requests(url="https://www.quora.com/partners", max_wait=10, total_reque
 
         each_question += 1
 
-        #for scrolling the browser's window vertically by 38
-        browser.execute_script("window.scrollTo(0, 38)")
+        #for scrolling the browser's window vertically by 42
+        browser.execute_script("window.scrollTo(0, 42)")
 
         #when the question will be last then it will fetch the older questions after waiting 5 seconds
         if each_question == (len(all_questions)-1):
@@ -71,20 +71,21 @@ def send_requests(url="https://www.quora.com/partners", max_wait=10, total_reque
             sleep(4)
             all_writers = browser.find_element_by_css_selector("div.paged_list_wrapper").find_elements_by_css_selector("div.request_answers_list_item")
             for each_writer in range(total_requests):
-                sleep(0.5)
-                send_request = all_writers[each_writer].find_element_by_css_selector("div.ui_layout_text").find_element_by_css_selector("div.button_wrapper")
+                sleep(0.8)
+                send_request = all_writers[each_writer].find_element_by_css_selector("div.ui_layout_text").find_element_by_css_selector("div.button_wrapper:not(.pop_in)")
                 send_request.click()
-                browser.execute_script("window.scrollTo(0, 3)")
+                browser.execute_script("window.scrollTo(0, 5)")
         except:
             print("Answer limit reached or Question is a sensitive question, and for that you have to manually request for answers")
             pass
 
-        sleep(0.6)
+        sleep(0.9)
         try:
-            done_btn = browser.find_element_by_css_selector("div.modal_overlay:not(.hidden)").find_element_by_css_selector("div.modal_wrapper.normal:not(.hidden)").find_element_by_css_selector("div.modal_actions").find_element_by_css_selector("a.submit_button")
-            done_btn.click()
+            done_btn = browser.find_element_by_css_selector("div.modal_overlay:not(.hidden)").find_element_by_css_selector("div.modal_wrapper.normal:not(.hidden)").find_element_by_css_selector("div.modal_actions").find_element_by_css_selector("a.ui_button--PillStyle--bright_blue")
         except:
-            continue
+            done_btn = browser.find_element_by_css_selector("div.modal_overlay:not(.hidden)").find_element_by_css_selector("div.modal_wrapper.normal:not(.hidden)").find_element_by_css_selector("div.modal_header").find_element_by_css_selector("a.ui_button--FlatStyle--gray")
+        
+        done_btn.click()
         sleep(0.5)
 
     return browser.quit()
